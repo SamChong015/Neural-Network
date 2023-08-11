@@ -40,10 +40,10 @@ float binaryCrossEntropy(Matrix<float> predictions, Matrix<float> targets)
             float target = targets.at(r, c);
 
             // Avoid log(0) by adding a small epsilon value
-            float epsilon = 1e-8;
+            float epsilon = 1e-8f;
             float clippedPrediction = std::max(epsilon, std::min(1.0f - epsilon, prediction));
 
-            loss += -target * log(clippedPrediction) - (1.0 - target) * log(1.0 - clippedPrediction);
+            loss += -target * log(clippedPrediction) - (1.0f - target) * log(1.0f - clippedPrediction);
         }
     }
     return loss / predictions.getCols();
@@ -60,11 +60,11 @@ Matrix<float> dxBinaryCrossEntropy(Matrix<float> predictions, Matrix<float> targ
             float target = targets.at(r, c);
 
             // Avoid log(0) by adding a small epsilon value
-            float epsilon = 1e-8;
+            float epsilon = 1e-8f;
             float clippedPrediction = std::max(epsilon, std::min(1.0f - epsilon, prediction));
 
             // Calculate the derivative of the loss function with respect to clippedPrediction
-            float dLoss_dClippedPrediction = (clippedPrediction - target) / (clippedPrediction * (1.0 - clippedPrediction));
+            float dLoss_dClippedPrediction = (clippedPrediction - target) / (clippedPrediction * (1.0f - clippedPrediction));
 
             // Calculate the derivative of clippedPrediction with respect to the raw prediction (1.0)
             float dClippedPrediction_dPrediction = 1.0;
@@ -95,7 +95,7 @@ float sparseCategoricalCrossEntropy(Matrix<float> predictions, Matrix<float> tar
             float prediction = predictions.at(target, c);
 
             // Avoid log(0) by adding a small epsilon value
-            float epsilon = 1e-8;
+            float epsilon = 1e-8f;
             float clippedPrediction = std::max(epsilon, std::min(1.0f - epsilon, prediction));
 
             loss += -log(clippedPrediction);
@@ -117,7 +117,7 @@ Matrix<float> dxSparseCategoricalCrossEntropy(Matrix<float> predictions, Matrix<
             float prediction = predictions.at(r, c);
 
             // Avoid log(0) by adding a small epsilon value
-            float epsilon = 1e-8;
+            float epsilon = 1e-8f;
             float clippedPrediction = std::max(epsilon, std::min(1.0f - epsilon, prediction));
 
             // Calculate the gradient for the current element

@@ -11,16 +11,19 @@
 
 float activationFunction(float x)
 {
-
+    return x;
 }
 
 float lossFunction(Matrix<float> predictions, Matrix<float> targets)
 {
-
+    float x = 0.0f;
+    return x;
 }
+
 Matrix<float> dxLossFunction(Matrix<float> predictions, Matrix<float> targets, float batch_size)
 {
-
+    Matrix<float> temp;
+    return temp;
 }
 
 class Network
@@ -90,7 +93,7 @@ public:
             Matrix<float> neuronError;
             std::vector<Matrix<float>> neuronErrors;
 
-            for (int j = topology.size(); j < topology.size()-1; j--)
+            for (size_t j = topology.size(); j < topology.size()-1; j--)
             {
                // neuronError = (outputPrev - target.at(i)) * dxLossFunction(input.at(i), target.at(i), batch);
             }

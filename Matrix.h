@@ -19,9 +19,9 @@ float getRandomNumber() {
     int randomInt = std::rand();
 
     // Scale the random number to a value between 0 and 1
-    float randomDouble = static_cast<double>(randomInt) / RAND_MAX;
+    float randomFloat = static_cast<float>(randomInt) / RAND_MAX;
 
-    return randomDouble;
+    return randomFloat;
 }
 
 template<typename Type>
@@ -118,8 +118,8 @@ public:
     }
 
     Matrix operator*(Matrix& other) {
-        int resultRows = rows;
-        int resultColumns = other.cols;
+        size_t resultRows = rows;
+        size_t resultColumns = other.cols;
 
         //if (printToConsol == true) { std::cout << "Multiplying two Matrices" << std::endl; }
         assert(cols == other.rows);
@@ -128,7 +128,7 @@ public:
 
         for (int i = 0; i < resultRows; ++i) {
             for (int j = 0; j < resultColumns; ++j) {
-                int sum = 0;
+                Type sum = 0;
                 for (int k = 0; k < cols; ++k) {
                     sum += at(i, k) * other.at(k, j);
                 }
